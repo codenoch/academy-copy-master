@@ -1,11 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import studentRahul from "@/assets/student-rahul.jpg";
 import studentAmit from "@/assets/student-amit.jpg";
 import studentSunita from "@/assets/student-sunita.jpg";
 import studentMohit from "@/assets/student-mohit.jpg";
 import studentPooja from "@/assets/student-pooja.jpg";
+import studentPriya from "@/assets/student-priya.jpg";
+import studentSana from "@/assets/student-sana.jpg";
+import studentDeepak from "@/assets/student-deepak.jpg";
 
 const testimonials = [
   {
@@ -38,6 +41,24 @@ const testimonials = [
     name: "Pooja Yadav",
     title: "Government Job Aspirant",
   },
+  {
+    img: studentPriya,
+    quote: "From knowing nothing about computers to getting hired in 3 months — this place changed my life. The faculty is patient and the curriculum is very practical.",
+    name: "Priya Verma",
+    title: "Office Assistant, Gurugram",
+  },
+  {
+    img: studentSana,
+    quote: "The teachers here actually care about your progress. I completed the Advance Computer Course and now work at a private firm. Best decision I ever made.",
+    name: "Sana Qureshi",
+    title: "Data Entry Operator",
+  },
+  {
+    img: studentDeepak,
+    quote: "Got certified, got confident, got placed. The MS Office + Tally combo course is exactly what every fresher needs. Thank you Om Digital Academy!",
+    name: "Deepak Negi",
+    title: "Accounts Assistant",
+  },
 ];
 
 const TestimonialsSection = () => {
@@ -47,33 +68,49 @@ const TestimonialsSection = () => {
   return (
     <section id="testimonials" ref={ref} className="section-padding bg-background">
       <div className="container mx-auto">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
           <p className="section-label">Student Reviews</p>
           <h2 className="section-title">Real Students. Real Results. Real Jobs.</h2>
           <p className="section-subtitle">Don't take our word for it — hear from the students whose lives we've changed.</p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 40, rotateX: 10 }}
-              animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="glass-card p-6 flex flex-col"
+              className="glass-card p-5 flex flex-col relative overflow-hidden group hover:border-primary/30 hover:shadow-xl transition-all duration-300"
             >
-              <div className="flex gap-1 mb-4">
+              {/* Quote icon */}
+              <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/10 group-hover:text-primary/20 transition-colors" />
+
+              <div className="flex gap-1 mb-3">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                  <Star key={j} className="w-3.5 h-3.5 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground italic flex-1 mb-4">"{t.quote}"</p>
+              <p className="text-sm text-muted-foreground italic flex-1 mb-4 font-body leading-relaxed">"{t.quote}"</p>
               <div className="flex items-center gap-3">
-                <img src={t.img} alt={t.name} className="w-12 h-12 rounded-full object-cover border-2 border-primary/20" width={48} height={48} loading="lazy" />
+                <motion.img
+                  src={t.img}
+                  alt={t.name}
+                  className="w-11 h-11 rounded-full object-cover border-2 border-primary/20"
+                  width={44}
+                  height={44}
+                  loading="lazy"
+                  whileHover={{ scale: 1.1 }}
+                />
                 <div>
-                  <p className="font-bold text-sm">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.title}</p>
+                  <p className="font-bold text-sm font-heading">{t.name}</p>
+                  <p className="text-xs text-muted-foreground font-body">{t.title}</p>
                 </div>
               </div>
             </motion.div>

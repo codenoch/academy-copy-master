@@ -28,14 +28,18 @@ const WhyChooseUs = () => {
               key={f.title}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="glass-card p-6 text-center hover-lift"
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-card p-6 text-center hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-default"
             >
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <motion.div
+                className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4"
+                whileHover={{ scale: 1.15, backgroundColor: "hsl(var(--primary) / 0.2)" }}
+              >
                 <f.icon className="w-7 h-7 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground">{f.desc}</p>
+              </motion.div>
+              <h3 className="font-bold text-lg mb-2 font-heading">{f.title}</h3>
+              <p className="text-sm text-muted-foreground font-body">{f.desc}</p>
             </motion.div>
           ))}
         </div>

@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 const courseOptions = [
   "Basic Computer", "MS Office", "Tally", "Advance Computer", "AutoCAD",
@@ -29,8 +29,18 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Hi, I'm ${form.name}.%0AMobile: ${form.mobile}%0AEmail: ${form.email || "N/A"}%0ACourse: ${form.course || "Not selected"}%0ABatch: ${form.batch || "Not selected"}%0AMessage: ${form.message || "N/A"}`;
-    window.open(`https://wa.me/919625654137?text=${text}`, "_blank");
+    const lines = [
+      `👋 Hi, I'm *${form.name}*`,
+      `📱 Mobile: ${form.mobile}`,
+      form.email ? `📧 Email: ${form.email}` : null,
+      `📚 Course: ${form.course || "Not selected"}`,
+      `🕐 Batch: ${form.batch || "Not selected"}`,
+      form.message ? `💬 Message: ${form.message}` : null,
+      `\n🙏 Please contact me regarding admission.`,
+    ].filter(Boolean).join("\n");
+
+    const encoded = encodeURIComponent(lines);
+    window.open(`https://wa.me/919625654137?text=${encoded}`, "_blank");
   };
 
   return (
@@ -55,71 +65,106 @@ const ContactSection = () => {
             onSubmit={handleSubmit}
             className="glass-card p-6 space-y-4"
           >
-            <Input placeholder="Full Name *" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-            <Input placeholder="Mobile Number *" required type="tel" value={form.mobile} onChange={(e) => setForm({ ...form, mobile: e.target.value })} />
-            <Input placeholder="Email Address" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+            <Input
+              placeholder="Full Name *"
+              required
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="font-body"
+            />
+            <Input
+              placeholder="Mobile Number *"
+              required
+              type="tel"
+              value={form.mobile}
+              onChange={(e) => setForm({ ...form, mobile: e.target.value })}
+              className="font-body"
+            />
+            <Input
+              placeholder="Email Address (Optional)"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              className="font-body"
+            />
             <Select onValueChange={(v) => setForm({ ...form, course: v })}>
-              <SelectTrigger><SelectValue placeholder="Course Interested In" /></SelectTrigger>
+              <SelectTrigger className="font-body"><SelectValue placeholder="Course Interested In" /></SelectTrigger>
               <SelectContent>
                 {courseOptions.map((c) => (
-                  <SelectItem key={c} value={c}>{c}</SelectItem>
+                  <SelectItem key={c} value={c} className="font-body">{c}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
             <Select onValueChange={(v) => setForm({ ...form, batch: v })}>
-              <SelectTrigger><SelectValue placeholder="Preferred Batch Time" /></SelectTrigger>
+              <SelectTrigger className="font-body"><SelectValue placeholder="Preferred Batch Time" /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="Morning">Morning</SelectItem>
-                <SelectItem value="Evening">Evening</SelectItem>
-                <SelectItem value="Weekend">Weekend</SelectItem>
+                <SelectItem value="Morning" className="font-body">🌅 Morning Batch</SelectItem>
+                <SelectItem value="Evening" className="font-body">🌆 Evening Batch</SelectItem>
+                <SelectItem value="Weekend" className="font-body">📅 Weekend Batch</SelectItem>
               </SelectContent>
             </Select>
-            <Textarea placeholder="Any Message / Query (Optional)" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-            <Button type="submit" size="lg" className="w-full font-bold">
-              📲 Send Enquiry on WhatsApp
-            </Button>
+            <Textarea
+              placeholder="Your message or query... (Optional)"
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              className="font-body min-h-[100px] resize-none"
+            />
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button type="submit" size="lg" className="w-full font-bold text-base gap-2 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300">
+                <Send className="w-4 h-4" />
+                Send Enquiry on WhatsApp
+              </Button>
+            </motion.div>
+            <p className="text-xs text-muted-foreground text-center font-body">
+              Your message will open in WhatsApp. We reply within minutes! 🚀
+            </p>
           </motion.form>
 
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6"
+            className="space-y-5"
           >
-            <div className="flex items-start gap-4">
-              <MapPin className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-              <div>
-                <p className="font-bold">Address</p>
-                <p className="text-sm text-muted-foreground">Gurugram, Haryana</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-              <div>
-                <p className="font-bold">Phone / WhatsApp</p>
-                <a href="tel:9625654137" className="text-sm text-muted-foreground hover:text-primary transition-colors">+91-9625654137</a>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-              <div>
-                <p className="font-bold">Email</p>
-                <p className="text-sm text-muted-foreground">info@omdigitalacademy.com</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Clock className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-              <div>
-                <p className="font-bold">Academy Hours</p>
-                <p className="text-sm text-muted-foreground">Mon–Sat: 7:00 AM – 8:00 PM</p>
-                <p className="text-sm text-muted-foreground">Sunday: 9:00 AM – 2:00 PM</p>
-              </div>
-            </div>
+            {[
+              { icon: MapPin, label: "Address", value: "Gurugram, Haryana", href: null },
+              { icon: Phone, label: "Phone / WhatsApp", value: "+91-9625654137", href: "tel:9625654137" },
+              { icon: Mail, label: "Email", value: "info@omdigitalacademy.com", href: "mailto:info@omdigitalacademy.com" },
+            ].map(({ icon: Icon, label, value, href }) => (
+              <motion.div
+                key={label}
+                whileHover={{ x: 4 }}
+                className="flex items-start gap-4 glass-card p-4"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-bold text-sm font-heading">{label}</p>
+                  {href ? (
+                    <a href={href} className="text-sm text-muted-foreground hover:text-primary transition-colors font-body">{value}</a>
+                  ) : (
+                    <p className="text-sm text-muted-foreground font-body">{value}</p>
+                  )}
+                </div>
+              </motion.div>
+            ))}
 
-            <div className="glass-card p-4 rounded-xl overflow-hidden mt-6">
+            <motion.div whileHover={{ x: 4 }} className="flex items-start gap-4 glass-card p-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-bold text-sm font-heading">Academy Hours</p>
+                <p className="text-sm text-muted-foreground font-body">Mon–Sat: 7:00 AM – 8:00 PM</p>
+                <p className="text-sm text-muted-foreground font-body">Sunday: 9:00 AM – 2:00 PM</p>
+              </div>
+            </motion.div>
+
+            <div className="overflow-hidden rounded-xl border border-border/50 shadow-md">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224346.54004883832!2d76.90131893955079!3d28.423998614449935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19d582e38859%3A0x2cf5fe8e5c64b1e!2sGurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                className="w-full h-48 rounded-lg"
+                className="w-full h-48"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

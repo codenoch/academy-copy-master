@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Nunito', 'system-ui', 'sans-serif'],
+        body: ['Poppins', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

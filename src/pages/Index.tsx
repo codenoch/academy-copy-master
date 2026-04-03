@@ -12,27 +12,34 @@ import GallerySection from "@/components/GallerySection";
 import AdmissionsSection from "@/components/AdmissionsSection";
 import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SectionReveal from "@/components/SectionReveal";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <AnnouncementBar />
       <Navbar />
+
+      {/* Hero — no reveal, shows immediately */}
       <HeroSection />
-      <TrustBar />
-      <AboutSection />
-      <CoursesSection />
-      <WhyChooseUs />
-      <HowItWorks />
-      <TestimonialsSection />
-      <PlacementsSection />
-      <GallerySection />
-      <AdmissionsSection />
-      <FAQSection />
-      <ContactSection />
-      <Footer />
+
+      <SectionReveal><TrustBar /></SectionReveal>
+      <SectionReveal><AboutSection /></SectionReveal>
+      <SectionReveal><CoursesSection /></SectionReveal>
+      <SectionReveal><WhyChooseUs /></SectionReveal>
+      <SectionReveal><HowItWorks /></SectionReveal>
+      <SectionReveal><TestimonialsSection /></SectionReveal>
+      <SectionReveal><PlacementsSection /></SectionReveal>
+      <SectionReveal><GallerySection /></SectionReveal>
+      <SectionReveal><AdmissionsSection /></SectionReveal>
+      <SectionReveal><FAQSection /></SectionReveal>
+      <SectionReveal><ContactSection /></SectionReveal>
+      <SectionReveal><CTASection /></SectionReveal>
+      <SectionReveal><Footer /></SectionReveal>
+
       <WhatsAppButton />
     </div>
   );

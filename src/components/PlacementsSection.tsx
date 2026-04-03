@@ -24,8 +24,9 @@ const PlacementsSection = () => {
               key={c}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              className="bg-card border border-border rounded-full px-5 py-2.5 text-sm font-medium hover-lift cursor-default"
+              transition={{ duration: 0.35, delay: i * 0.05 }}
+              whileHover={{ scale: 1.08, y: -3 }}
+              className="bg-card border border-border rounded-full px-5 py-2.5 text-sm font-medium cursor-default hover:border-primary/40 hover:bg-primary/5 hover:text-primary transition-all duration-200 shadow-sm"
             >
               {c}
             </motion.span>
