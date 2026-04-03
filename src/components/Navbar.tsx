@@ -13,6 +13,22 @@ const navLinks = [
   { label: "Contact Us", href: "#contact" },
 ];
 
+const menuVariants = {
+  hidden: { height: 0, opacity: 0 },
+  visible: {
+    height: "auto",
+    opacity: 1,
+    transition: { when: "beforeChildren", staggerChildren: 0.06, duration: 0.3 },
+  },
+  exit: { height: 0, opacity: 0, transition: { when: "afterChildren", duration: 0.2 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 200, damping: 20 } },
+  exit: { opacity: 0, x: -20 },
+};
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
@@ -29,13 +45,13 @@ const Navbar = () => {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
             >
               {l.label}
             </a>
           ))}
           <Button asChild>
-            <a href="#contact">
+            <a href="tel:9625654137">
               <Phone className="w-4 h-4 mr-2" />
               Enroll Now — Free Demo
             </a>
@@ -48,32 +64,36 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu with stagger */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
             className="lg:hidden overflow-hidden bg-card border-b border-border"
           >
-            <div className="flex flex-col gap-2 px-4 py-4">
+            <div className="flex flex-col gap-1 px-4 py-4">
               {navLinks.map((l) => (
-                <a
+                <motion.a
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  variants={itemVariants}
+                  className="py-3 px-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
                 >
                   {l.label}
-                </a>
+                </motion.a>
               ))}
-              <Button asChild className="mt-2">
-                <a href="#contact" onClick={() => setOpen(false)}>
-                  <Phone className="w-4 h-4 mr-2" />
-                  Enroll Now — Free Demo
-                </a>
-              </Button>
+              <motion.div variants={itemVariants}>
+                <Button asChild className="mt-2 w-full">
+                  <a href="tel:9625654137" onClick={() => setOpen(false)}>
+                    <Phone className="w-4 h-4 mr-2" />
+                    Enroll Now — Free Demo
+                  </a>
+                </Button>
+              </motion.div>
             </div>
           </motion.div>
         )}

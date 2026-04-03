@@ -30,45 +30,34 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `Hi, I'm ${form.name}.%0AMobile: ${form.mobile}%0AEmail: ${form.email || "N/A"}%0ACourse: ${form.course || "Not selected"}%0ABatch: ${form.batch || "Not selected"}%0AMessage: ${form.message || "N/A"}`;
-    window.open(`https://wa.me/91XXXXXXXXXX?text=${text}`, "_blank");
+    window.open(`https://wa.me/919625654137?text=${text}`, "_blank");
   };
 
   return (
     <section id="contact" ref={ref} className="section-padding bg-secondary/30">
       <div className="container mx-auto">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
           <p className="section-label">Get In Touch</p>
           <h2 className="section-title">Ready to Start? We're Just One Message Away.</h2>
           <p className="section-subtitle">Fill in the form and we'll reach out instantly to help you choose the right course.</p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           <motion.form
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={handleSubmit}
             className="glass-card p-6 space-y-4"
           >
-            <Input
-              placeholder="Full Name *"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-            />
-            <Input
-              placeholder="Mobile Number *"
-              required
-              type="tel"
-              value={form.mobile}
-              onChange={(e) => setForm({ ...form, mobile: e.target.value })}
-            />
-            <Input
-              placeholder="Email Address"
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-            />
+            <Input placeholder="Full Name *" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            <Input placeholder="Mobile Number *" required type="tel" value={form.mobile} onChange={(e) => setForm({ ...form, mobile: e.target.value })} />
+            <Input placeholder="Email Address" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
             <Select onValueChange={(v) => setForm({ ...form, course: v })}>
               <SelectTrigger><SelectValue placeholder="Course Interested In" /></SelectTrigger>
               <SelectContent>
@@ -85,20 +74,16 @@ const ContactSection = () => {
                 <SelectItem value="Weekend">Weekend</SelectItem>
               </SelectContent>
             </Select>
-            <Textarea
-              placeholder="Any Message / Query (Optional)"
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-            />
+            <Textarea placeholder="Any Message / Query (Optional)" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
             <Button type="submit" size="lg" className="w-full font-bold">
               📲 Send Enquiry on WhatsApp
             </Button>
           </motion.form>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="space-y-6"
           >
             <div className="flex items-start gap-4">
@@ -112,7 +97,7 @@ const ContactSection = () => {
               <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <p className="font-bold">Phone / WhatsApp</p>
-                <p className="text-sm text-muted-foreground">+91-XXXXXXXXXX</p>
+                <a href="tel:9625654137" className="text-sm text-muted-foreground hover:text-primary transition-colors">+91-9625654137</a>
               </div>
             </div>
             <div className="flex items-start gap-4">
