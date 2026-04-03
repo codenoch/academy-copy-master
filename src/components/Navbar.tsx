@@ -25,7 +25,7 @@ const menuVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, x: -30 },
-  visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 200, damping: 20 } },
+  visible: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 200, damping: 20 } },
   exit: { opacity: 0, x: -20 },
 };
 
