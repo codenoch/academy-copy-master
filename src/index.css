@@ -78,40 +78,80 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Better font rendering on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent text size adjustment */
+    -webkit-text-size-adjust: 100%;
+    /* Better tap highlight */
+    -webkit-tap-highlight-color: transparent;
   }
 
   html {
     scroll-behavior: smooth;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight;
+    /* Better text rendering */
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Improve touch targets on mobile */
+  @media (max-width: 640px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Better image rendering */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Smooth scrolling for iOS */
+  @supports (-webkit-overflow-scrolling: touch) {
+    body {
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
 
 @layer components {
   .section-padding {
-    @apply px-4 py-12 sm:py-16 md:px-8 md:py-20 lg:px-16 lg:py-24;
+    @apply px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-16 lg:py-20 xl:py-24;
   }
 
   .section-label {
-    @apply text-xs sm:text-sm font-semibold uppercase tracking-widest text-primary mb-3;
+    @apply text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-widest text-primary mb-2 sm:mb-3;
   }
 
   .section-title {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-4;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-foreground mb-3 sm:mb-4 leading-tight;
   }
 
   .section-subtitle {
-    @apply text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto;
+    @apply text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed;
   }
 
   .glass-card {
-    @apply bg-card/80 backdrop-blur-md border border-border/50 rounded-xl shadow-lg;
+    @apply bg-card/80 backdrop-blur-md border border-border/50 rounded-lg sm:rounded-xl shadow-lg;
   }
 
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-700;
+  }
+
+  /* Mobile-optimized container */
+  .container {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
 
@@ -123,11 +163,49 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Mobile-specific utilities */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Prevent text size adjustment on mobile */
+  .no-text-size-adjust {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Better tap highlight */
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 /* Smooth scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
+}
+@media (min-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 }
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));

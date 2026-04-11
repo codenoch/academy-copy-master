@@ -95,7 +95,7 @@ const GallerySection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-8"
+          className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 px-2"
         >
           {tabs.map((tab) => (
             <motion.button
@@ -103,7 +103,7 @@ const GallerySection = () => {
               onClick={() => setActiveTab(tab)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
                 activeTab === tab
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
                   : "bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary"
@@ -117,7 +117,7 @@ const GallerySection = () => {
         {/* Grid */}
         <motion.div
           layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-6xl mx-auto mb-8"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 max-w-6xl mx-auto mb-6 sm:mb-8"
         >
           {filtered.map((img, i) => (
             <motion.div
@@ -127,25 +127,25 @@ const GallerySection = () => {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.4, delay: Math.min(i * 0.04, 0.5) }}
               whileHover={{ scale: 1.04, zIndex: 10 }}
-              className={`relative group overflow-hidden rounded-xl cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300 ${img.featured ? "md:col-span-2 md:row-span-2" : ""}`}
+              className={`relative group overflow-hidden rounded-lg sm:rounded-xl cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300 ${img.featured ? "sm:col-span-2 sm:row-span-2" : ""}`}
               onClick={() => setLightbox(i)}
             >
               <img
                 src={img.src}
                 alt={img.caption}
-                className={`w-full object-cover group-hover:scale-110 transition-transform duration-500 ${img.featured ? "h-64 md:h-full" : "h-40 md:h-48"}`}
+                className={`w-full object-cover group-hover:scale-110 transition-transform duration-500 ${img.featured ? "h-48 sm:h-64 md:h-full" : "h-32 sm:h-40 md:h-48"}`}
                 loading="lazy"
                 width={400}
                 height={300}
               />
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/65 transition-all duration-300 flex flex-col items-end justify-between p-3">
-                <ZoomIn className="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <p className="text-primary-foreground text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium leading-snug">
+              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/65 transition-all duration-300 flex flex-col items-end justify-between p-2 sm:p-3">
+                <ZoomIn className="w-4 h-4 sm:w-5 sm:h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <p className="text-primary-foreground text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium leading-snug">
                   {img.caption}
                 </p>
               </div>
               {img.featured && (
-                <span className="absolute top-3 left-3 bg-accent text-accent-foreground text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+                <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-accent text-accent-foreground text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wide">
                   Featured
                 </span>
               )}
@@ -176,25 +176,25 @@ const GallerySection = () => {
             onClick={() => setLightbox(null)}
           >
             <button
-              className="absolute top-5 right-5 text-primary-foreground bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
+              className="absolute top-3 right-3 sm:top-5 sm:right-5 text-primary-foreground bg-white/10 hover:bg-white/20 rounded-full p-1.5 sm:p-2 transition-colors"
               onClick={() => setLightbox(null)}
               aria-label="Close"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-foreground bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors z-10"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-primary-foreground bg-white/10 hover:bg-white/20 rounded-full p-2 sm:p-3 transition-colors z-10"
               onClick={(e) => { e.stopPropagation(); goLightboxPrev(); }}
               aria-label="Previous"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-primary-foreground bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors z-10"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-primary-foreground bg-white/10 hover:bg-white/20 rounded-full p-2 sm:p-3 transition-colors z-10"
               onClick={(e) => { e.stopPropagation(); goLightboxNext(); }}
               aria-label="Next"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <AnimatePresence mode="wait">
               <motion.div
@@ -209,12 +209,12 @@ const GallerySection = () => {
                 <img
                   src={filtered[lightbox].src}
                   alt={filtered[lightbox].caption}
-                  className="max-w-full max-h-[75vh] rounded-xl object-contain shadow-2xl"
+                  className="max-w-full max-h-[70vh] sm:max-h-[75vh] rounded-lg sm:rounded-xl object-contain shadow-2xl"
                 />
-                <p className="mt-4 text-primary-foreground text-center text-sm font-medium opacity-80">
+                <p className="mt-3 sm:mt-4 text-primary-foreground text-center text-xs sm:text-sm font-medium opacity-80 px-4">
                   {filtered[lightbox].caption}
                 </p>
-                <p className="text-primary-foreground/40 text-xs mt-1">
+                <p className="text-primary-foreground/40 text-[10px] sm:text-xs mt-1">
                   {lightbox + 1} / {filtered.length}
                 </p>
               </motion.div>

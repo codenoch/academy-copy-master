@@ -79,7 +79,7 @@ const CTASection = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.7 }}
-          className="mt-10 flex flex-wrap justify-center gap-6 text-primary-foreground/60 text-sm font-body"
+          className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 text-primary-foreground/60 text-xs sm:text-sm font-body px-4"
         >
           {["✅ No Registration Fee", "✅ Free Demo Class", "✅ Flexible Timings", "✅ Job Placement Support"].map((item) => (
             <span key={item}>{item}</span>

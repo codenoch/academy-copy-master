@@ -16,9 +16,9 @@ const PlacementsSection = () => {
       <div className="container mx-auto text-center">
         <p className="section-label">Where Our Students Work</p>
         <h2 className="section-title">Our Students Are Working at Top Companies</h2>
-        <p className="section-subtitle mb-10">Our placement-ready training has helped students land jobs at:</p>
+        <p className="section-subtitle mb-8 sm:mb-10">Our placement-ready training has helped students land jobs at:</p>
 
-        <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto mb-10">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-3xl mx-auto mb-8 sm:mb-10">
           {companies.map((c, i) => (
             <motion.span
               key={c}
@@ -26,14 +26,14 @@ const PlacementsSection = () => {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.35, delay: i * 0.05 }}
               whileHover={{ scale: 1.08, y: -3 }}
-              className="bg-card border border-border rounded-full px-5 py-2.5 text-sm font-medium cursor-default hover:border-primary/40 hover:bg-primary/5 hover:text-primary transition-all duration-200 shadow-sm"
+              className="bg-card border border-border rounded-full px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm font-medium cursor-default hover:border-primary/40 hover:bg-primary/5 hover:text-primary transition-all duration-200 shadow-sm"
             >
               {c}
             </motion.span>
           ))}
         </div>
 
-        <Button variant="outline" asChild>
+        <Button variant="outline" asChild className="text-sm sm:text-base">
           <a href="#contact">See How We Support Your Placement →</a>
         </Button>
       </div>

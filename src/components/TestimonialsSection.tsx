@@ -79,7 +79,7 @@ const TestimonialsSection = () => {
           <p className="section-subtitle">Don't take our word for it — hear from the students whose lives we've changed.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-7xl mx-auto">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
@@ -87,30 +87,30 @@ const TestimonialsSection = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="glass-card p-5 flex flex-col relative overflow-hidden group hover:border-primary/30 hover:shadow-xl transition-all duration-300"
+              className="glass-card p-4 sm:p-5 flex flex-col relative overflow-hidden group hover:border-primary/30 hover:shadow-xl transition-all duration-300"
             >
               {/* Quote icon */}
-              <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/10 group-hover:text-primary/20 transition-colors" />
+              <Quote className="absolute top-3 right-3 sm:top-4 sm:right-4 w-6 h-6 sm:w-8 sm:h-8 text-primary/10 group-hover:text-primary/20 transition-colors" />
 
-              <div className="flex gap-1 mb-3">
+              <div className="flex gap-0.5 sm:gap-1 mb-2 sm:mb-3">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-accent text-accent" />
+                  <Star key={j} className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground italic flex-1 mb-4 font-body leading-relaxed">"{t.quote}"</p>
-              <div className="flex items-center gap-3">
+              <p className="text-xs sm:text-sm text-muted-foreground italic flex-1 mb-3 sm:mb-4 font-body leading-relaxed">"{t.quote}"</p>
+              <div className="flex items-center gap-2 sm:gap-3">
                 <motion.img
                   src={t.img}
                   alt={t.name}
-                  className="w-11 h-11 rounded-full object-cover border-2 border-primary/20"
+                  className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-primary/20"
                   width={44}
                   height={44}
                   loading="lazy"
                   whileHover={{ scale: 1.1 }}
                 />
                 <div>
-                  <p className="font-bold text-sm font-heading">{t.name}</p>
-                  <p className="text-xs text-muted-foreground font-body">{t.title}</p>
+                  <p className="font-bold text-xs sm:text-sm font-heading">{t.name}</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground font-body">{t.title}</p>
                 </div>
               </div>
             </motion.div>

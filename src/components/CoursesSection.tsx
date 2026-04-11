@@ -38,7 +38,7 @@ const CoursesSection = () => {
           <p className="section-subtitle">From beginners to professionals — we have a course for every stage of your journey.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-10 sm:mb-12">
           {courses.map((c, i) => (
             <motion.div
               key={c.title}
@@ -46,20 +46,20 @@ const CoursesSection = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: Math.min(i * 0.06, 0.5), ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className={`glass-card p-6 group cursor-default bg-gradient-to-br ${c.color} border border-border/50 hover:border-primary/30 hover:shadow-xl transition-all duration-300`}
+              className={`glass-card p-4 sm:p-5 md:p-6 group cursor-default bg-gradient-to-br ${c.color} border border-border/50 hover:border-primary/30 hover:shadow-xl transition-all duration-300`}
             >
               <motion.div
-                className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-primary/20 transition-colors"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
-                <c.icon className="w-6 h-6 text-primary" />
+                <c.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </motion.div>
-              <span className="text-xs font-semibold text-accent uppercase tracking-wide">{c.tag}</span>
-              <h3 className="text-lg font-bold mt-1 mb-2 font-heading">{c.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4 font-body">{c.desc}</p>
+              <span className="text-[10px] sm:text-xs font-semibold text-accent uppercase tracking-wide">{c.tag}</span>
+              <h3 className="text-base sm:text-lg font-bold mt-1 mb-1.5 sm:mb-2 font-heading">{c.title}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 font-body">{c.desc}</p>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">📅 {c.duration} | 📜 Certificate</span>
-                <Button size="sm" variant="ghost" className="text-primary font-semibold text-xs hover:bg-primary hover:text-primary-foreground transition-all duration-200" asChild>
+                <span className="text-[10px] sm:text-xs text-muted-foreground">📅 {c.duration} | 📜 Certificate</span>
+                <Button size="sm" variant="ghost" className="text-primary font-semibold text-[10px] sm:text-xs hover:bg-primary hover:text-primary-foreground transition-all duration-200" asChild>
                   <a href="#contact">Enroll →</a>
                 </Button>
               </div>
@@ -71,11 +71,11 @@ const CoursesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.7 }}
-          className="text-center glass-card p-8 max-w-xl mx-auto hover:shadow-xl transition-shadow duration-300"
+          className="text-center glass-card p-5 sm:p-6 md:p-8 max-w-xl mx-auto hover:shadow-xl transition-shadow duration-300"
         >
-          <p className="font-bold text-lg mb-2 font-heading">Not sure which course is right for you?</p>
-          <p className="text-muted-foreground text-sm mb-4 font-body">Talk to our counsellors — we'll help you pick the perfect program.</p>
-          <Button asChild className="hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">
+          <p className="font-bold text-base sm:text-lg mb-2 font-heading">Not sure which course is right for you?</p>
+          <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 font-body">Talk to our counsellors — we'll help you pick the perfect program.</p>
+          <Button asChild className="hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 text-sm sm:text-base">
             <a href="#contact">📞 Get Free Counselling →</a>
           </Button>
         </motion.div>

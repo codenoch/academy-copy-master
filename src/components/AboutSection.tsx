@@ -34,7 +34,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-muted-foreground text-lg mb-4 font-body"
+            className="text-muted-foreground text-base sm:text-lg mb-3 sm:mb-4 max-w-xl mx-auto lg:mx-0 font-body"
           >
             Om Digital Academy was founded with one mission: to make quality computer education accessible
             to every student in Gurugram — regardless of age, background, or prior knowledge.
@@ -43,7 +43,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="text-muted-foreground mb-10 font-body"
+            className="text-muted-foreground text-sm sm:text-base mb-8 sm:mb-10 font-body"
           >
             Since our founding, we have trained <strong className="text-foreground">10,000+ students</strong> and placed them in top companies,
             government departments, CA firms, architecture studios, and more. Our trainers are industry professionals,
@@ -51,7 +51,7 @@ const AboutSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto mb-8 sm:mb-10">
           {highlights.map((h, i) => (
             <motion.div
               key={h.text}
@@ -59,12 +59,12 @@ const AboutSection = () => {
               animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * i, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -4, scale: 1.02, boxShadow: "0 10px 30px rgba(0,0,0,0.08)" }}
-              className="flex items-center gap-3 bg-secondary/50 hover:bg-secondary rounded-xl p-4 cursor-default transition-colors duration-300"
+              className="flex items-center gap-2 sm:gap-3 bg-secondary/50 hover:bg-secondary rounded-lg sm:rounded-xl p-3 sm:p-4 cursor-default transition-colors duration-300"
             >
-              <div className={`w-10 h-10 rounded-lg bg-background flex items-center justify-center flex-shrink-0 shadow-sm`}>
-                <h.icon className={`w-5 h-5 ${h.color}`} />
+              <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-background flex items-center justify-center flex-shrink-0 shadow-sm`}>
+                <h.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${h.color}`} />
               </div>
-              <span className="text-sm font-medium font-body">{h.text}</span>
+              <span className="text-xs sm:text-sm font-medium font-body">{h.text}</span>
             </motion.div>
           ))}
         </div>

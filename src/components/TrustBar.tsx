@@ -51,12 +51,12 @@ const TrustBar = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center text-lg font-semibold mb-10 opacity-70 font-body tracking-wide uppercase"
+          className="text-center text-sm sm:text-base md:text-lg font-semibold mb-8 sm:mb-10 opacity-70 font-body tracking-wide uppercase"
         >
           Numbers That Speak For Themselves
         </motion.h3>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -70,14 +70,14 @@ const TrustBar = () => {
                 initial={{ scale: 0 }}
                 animate={inView ? { scale: 1 } : {}}
                 transition={{ delay: i * 0.15 + 0.2, type: "spring", stiffness: 200 }}
-                className="text-3xl mb-2"
+                className="text-2xl sm:text-3xl mb-1 sm:mb-2"
               >
                 {s.icon}
               </motion.div>
-              <div className="text-4xl md:text-5xl font-extrabold mb-1 font-heading">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-0.5 sm:mb-1 font-heading">
                 <CountUp target={s.value} suffix={s.suffix} inView={inView} />
               </div>
-              <div className="text-sm opacity-70 font-body">{s.label}</div>
+              <div className="text-xs sm:text-sm opacity-70 font-body">{s.label}</div>
             </motion.div>
           ))}
         </div>
